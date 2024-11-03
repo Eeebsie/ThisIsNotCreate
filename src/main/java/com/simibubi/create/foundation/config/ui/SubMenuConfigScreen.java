@@ -14,6 +14,9 @@ import java.util.function.Consumer;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import com.simibubi.create.Create;
+import com.simibubi.create.foundation.config.ui.entries.StringEntry;
+
 import org.lwjgl.glfw.GLFW;
 
 import com.electronwill.nightconfig.core.AbstractConfig;
@@ -280,6 +283,8 @@ public class SubMenuConfigScreen extends ConfigScreen {
 					entry = new EnumEntry(humanKey, (ForgeConfigSpec.ConfigValue<Enum<?>>) configValue, valueSpec);
 				} else if (value instanceof Number) {
 					entry = NumberEntry.create(value, humanKey, configValue, valueSpec);
+				} else if (value instanceof String) {
+					entry = new StringEntry(humanKey, (ForgeConfigSpec.ConfigValue<String>) configValue, valueSpec);
 				}
 
 				if (entry == null)

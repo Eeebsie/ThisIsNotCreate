@@ -11,6 +11,7 @@ import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.simibubi.create.foundation.config.ui.entries.NumberEntry;
+import com.simibubi.create.foundation.config.ui.entries.StringEntry;
 import com.simibubi.create.foundation.gui.RemovedGuiUtils;
 import com.simibubi.create.foundation.gui.Theme;
 import com.simibubi.create.foundation.gui.TickableGuiEventListener;
@@ -66,6 +67,7 @@ public class ConfigScreenList extends ObjectSelectionList<ConfigScreenList.Entry
 	@Override
 	public boolean mouseClicked(double x, double y, int button) {
 		children().stream().filter(e -> e instanceof NumberEntry<?>).forEach(e -> e.mouseClicked(x, y, button));
+		children().stream().filter(e -> e instanceof StringEntry).forEach(e -> e.mouseClicked(x, y, button));
 
 		return super.mouseClicked(x, y, button);
 	}
