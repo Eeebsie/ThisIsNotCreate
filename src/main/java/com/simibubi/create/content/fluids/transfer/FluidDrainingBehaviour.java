@@ -284,6 +284,9 @@ public class FluidDrainingBehaviour extends FluidManipulationBehaviour {
 		for (BlockPos pos : visited) {
 			if (getWorld().getFluidState(pos).isSource())
 				sourceBlocks++;
+
+			if (sourceBlocks > maxBlocks)
+				return;
 		}
 
 		if (sourceBlocks > maxBlocks && canDrainInfinitely(fluid) && !queue.isEmpty()) {
