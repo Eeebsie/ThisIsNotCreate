@@ -303,6 +303,7 @@ public class FluidDrainingBehaviour extends FluidManipulationBehaviour {
 
 		blockEntity.sendData();
 		visited.clear();
+		frontier.clear();
 	}
 
 	private void continueValidation() {
