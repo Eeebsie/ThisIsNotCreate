@@ -279,7 +279,17 @@ public class FluidDrainingBehaviour extends FluidManipulationBehaviour {
 		}
 
 		int maxBlocks = maxBlocks();
-		if (visited.size() > maxBlocks && canDrainInfinitely(fluid) && !queue.isEmpty()) {
+		int sourceBlocks = 0;
+
+		for (BlockPos pos : visited) {
+			if (getWorld().getFluidState(pos).isSource())
+				sourceBlocks++;
+
+			if (sourceBlocks > maxBlocks)
+				return;
+		}
+
+		if (sourceBlocks > maxBlocks && canDrainInfinitely(fluid) && !queue.isEmpty()) {
 			infinite = true;
 			BlockPos firstValid = queue.first()
 				.pos();
@@ -296,6 +306,7 @@ public class FluidDrainingBehaviour extends FluidManipulationBehaviour {
 
 		blockEntity.sendData();
 		visited.clear();
+		frontier.clear();
 	}
 
 	private void continueValidation() {
